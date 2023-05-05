@@ -1,0 +1,70 @@
+﻿@model IEnumerable<ConsultaVeterinaria>
+
+@{
+    ViewData["Title"] = "Consultas Veterinarias";
+}
+
+<div class="card-consultaveterinaria">
+    <div class="card-body">
+
+<h1>Consultas Veterinarias</h1>
+        
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Id Consulta</th>
+            <th>Nombre Mascota</th>
+            <th>Nombre Veterinario</th>
+            <th>Nombre Dueño</th>
+            <th>Sucursal</th>
+            <th>Fecha Consulta</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody id="busqueda-tiempo-real">
+        @foreach (var consultaVeterinaria in Model)
+        {
+                        <tr>
+                            <td>
+                                     @consultaVeterinaria.Id
+                            </td>
+                            <td >
+                                     @consultaVeterinaria.NomMascota
+                            </td>
+                            <td>
+                                     @consultaVeterinaria.NomVeterinario
+                            </td>
+                            <td>  
+                                     @consultaVeterinaria.NomCliente
+                            </td>
+
+                            <td>
+                                    @consultaVeterinaria.Sucursal
+                            </td>
+
+                            <td>
+                                    @consultaVeterinaria.FechaConsulta
+                            </td>
+
+                            <td>
+
+                                <a  asp-action="Detalle" asp-route-id="@consultaVeterinaria.Id" class="btn btn-primary">
+                                     <i class="bi-eye-fill"></i>
+                                </a>
+
+                                    <a class="btn btn-success" asp-action="Imprimir" asp-route-id="@consultaVeterinaria.Id">
+                                      <i class="bi bi-printer-fill"></i>
+                                </a>
+                            </td>
+
+                        </tr>
+        }
+    </tbody>
+</table>
+
+        @Html.ActionLink("Volver","Index","Mascota",null,new {atri = "", @class= "btn btn-secondary"})
+
+        </div>
+ </div>

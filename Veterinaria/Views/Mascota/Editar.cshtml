@@ -1,0 +1,105 @@
+﻿@model MascotaCreacionViewModel
+
+@{
+    ViewData["Title"] = "Editar Mascota";
+}
+
+
+
+
+<form asp-action="EditarMascota" class="form">
+
+    <h1>Editar Mascota</h1>
+
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <input type="hidden" asp-for="Id" />
+
+    <!--Campo Nombre-->
+    <div class="mb-3">
+        <label asp-for="Nombre" class="form-label"></label>
+        <input asp-for="Nombre" class="form-control" disabled ="disabled"/>
+        <span asp-validation-for="Nombre" class="text-danger"></span>
+    </div>
+
+    <!--Campo ClienteId-->
+    <div class="mb-3">
+        <label asp-for="ClienteId" class="form-label">Nombre del dueño de la mascota</label>
+        <select asp-for="ClienteId" asp-items="Model.ListaClientes" class="form-select"></select>
+        <span asp-validation-for="ClienteId" class="text-danger"></span>
+    </div>
+
+    <!--Campo Sexo-->
+    <div class="mb-3">
+        <label asp-for="SexoId" class="form-label">Sexo</label>
+        <select asp-for="SexoId" asp-items="Html.GetEnumSelectList<Sexo>()" class="form-select"></select>
+        <span asp-validation-for="SexoId" class="text-danger"></span>
+    </div>
+
+    <!--Campo EspecieId-->
+    <div class="mb-3">
+        <label asp-for="EspecieId" class="form-label">Especie de la mascota</label>
+        <select asp-for="EspecieId" asp-items="Model.ListaEspecies" class="form-select"></select>
+        <span asp-validation-for="EspecieId" class="text-danger"></span>
+    </div>
+
+    <!--Campo RazaId-->
+     <div class="mb-3">
+        <label asp-for="RazaId" class="form-label">Raza de la mascota</label>
+        <select asp-for="RazaId" asp-items="Model.ListaRazas" class="form-select"></select>
+        <span asp-validation-for="RazaId" class="text-danger"></span>
+    </div>
+
+    <!--Campo Edad-->
+    <div class="mb-3">
+        <label asp-for="Edad" class="form-label">Edad en años de la mascota</label>
+        <input asp-for="Edad" class="form-control"></input>
+        <span asp-validation-for="Edad" class="text-danger"></span>
+    </div>
+
+    <!--Campo FechaRegistro-->
+    <div class="mb-3">
+        <label asp-for="FechaRegistro" class="form-label">Fecha en la que se realiza el registro</label>
+        <input asp-for="FechaRegistro" class="form-control" disabled ="disabled"></input>
+        <span asp-validation-for="FechaRegistro" class="text-danger"></span>
+    </div>
+
+    <!--Campo Descripcion-->
+    <div class="mb-3">
+        <label asp-for="Descripcion" class="form-label"></label>
+        <textarea asp-for="Descripcion" class="form-control"></textarea>
+        <span asp-validation-for="Descripcion" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Editar</button>
+    <a class="btn btn-secondary" asp-action="Index">Cancelar</a>
+</form>
+
+
+@section Scripts{
+                    <partial name="_ValidationScriptsPartial" />
+
+
+                    <script>
+
+                        const urlObtenerRazas = '@Url.Action("ObtenerRazas")';
+
+                        $(function(){
+                            $("#EspecieId").change(async function(){
+                                const valorSeleccionado = $(this).val();
+
+                                const respuesta = await fetch(urlObtenerRazas,{
+                                    method: 'POST',
+                                    body: valorSeleccionado,
+                                    headers: {
+                                        'Content-Type': 'application/json'
+                                    }
+
+                                });
+
+                                const json = await respuesta.json();
+                                const opciones = json.map(raza => `<option value=${raza.value}>${raza.text}</option>`);
+                                $("#RazaId").html(opciones);
+                            })
+                        })
+                    </script>
+}

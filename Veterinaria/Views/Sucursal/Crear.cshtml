@@ -1,0 +1,55 @@
+﻿@model Sucursal
+
+@{
+    ViewData["Title"] = "Crear Sucursal";
+}
+
+
+
+<form asp-action="Crear" class="form" id="formulariosucursal" onsubmit="enviarFormulario(event)">
+
+    <h1>Crear Sucursal</h1>
+<h5>La veterinaria Colpets tiene muchas sucursales en la ciudad y tambien
+    se evalua que puedan abrir mas sucursales en el resto del pais.</h5>
+
+<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+    <div class="mb-3">
+        <label asp-for="Nombre" class="form-label">Nombre</label>
+        <input type="text" asp-for="Nombre" class="form-control" />
+        <span asp-validation-for="Nombre" class="text-danger"></span>
+    </div>
+
+     <div class="mb-3">
+        <label asp-for="Direccion" class="form-label">Direccion</label>
+        <input type="text" asp-for="Direccion" class="form-control"  style="text-transform:uppercase"/>
+        <span asp-validation-for="Direccion" class="text-danger"></span>
+    </div>
+
+     <div class="mb-3">
+        <label asp-for="Telefono" class="form-label">Telefono</label>
+        <input type="text" asp-for="Telefono" class="form-control" />
+        <span asp-validation-for="Telefono" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Enviar</button>
+    <a class="btn btn-secondary" asp-action="Index">Cancelar</a>
+</form>
+
+@section Scripts{
+                <partial name="_ValidationScriptsPartial" />
+
+                    <script>
+                        function enviarFormulario(e){
+                             e.preventDefault();
+                             Swal.fire({
+                             title: 'Sucursal Registrada Con exito',
+                             icon: 'success',
+                                                confirmButtonText: 'OK'
+                             }).then((resultado) =>{
+                                            const formulario = document.getElementById('formulariosucursal');
+                                            formulario.submit();
+                             })
+                        }
+                    </script>
+}

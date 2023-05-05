@@ -1,0 +1,31 @@
+﻿
+.acordeon-razas {
+    color: black !important;
+    font-size: 18px;
+}
+
+    .acordeon-razas button > span {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+    }
+
+    .acordeon-razas li > span {
+        display: flex;
+        justify-content: space-between;
+        width: 100%
+    }
+
+    .acordeon-razas .acordeon-collapse {
+        font-size: 18px;
+    }
+
+.contenedor {
+    display: flex;
+    justify-content: space-between;
+    width: 95%
+}
+
+    
+
+    

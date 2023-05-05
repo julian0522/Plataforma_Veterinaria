@@ -1,0 +1,118 @@
+﻿@model ConsultaVeterinariaCreacionViewModel
+
+@{
+    ViewData["Title"] = "Registrar Consulta Veterinaria";
+}
+
+
+
+<form asp-action="Crear" class="form" id="formularioconsultaveterinaria" onsubmit="enviarFormulario(event)">
+
+    <h1>Registrar Consulta Veterinaria</h1>
+<h4>En este formulario podra registrar una consulta veterinaria que realice a una mascota </h4>
+
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+    <!--Campo ClienteId-->
+    <div class="mb-3">
+        <label asp-for="ClienteId" class="form-label">Nombre del dueño</label>
+        <select asp-for="ClienteId" asp-items="Model.ListaClientes" class="form-select"></select>
+        <span asp-validation-for="ClienteId" class="text-danger"></span>
+    </div>
+
+    <!--Campo MascotaId-->
+    <div class="mb-3">
+        <label asp-for="MascotaId" class="form-label">Nombre de la Mascota</label>
+        <select asp-for="MascotaId" asp-items="Model.ListaMascotas" class="form-select"></select>
+        <span asp-validation-for="MascotaId" class="text-danger"></span>
+    </div>
+
+    <!--Campo SucursalId-->
+    <div class="mb-3">
+        <label asp-for="SucursalId" class="form-label">Sucursal donde se esta atendiendo a la mascota</label>
+        <select asp-for="SucursalId" asp-items="Model.ListaSucursales" class="form-select"></select>
+        <span asp-validation-for="SucursalId" class="text-danger"></span>
+    </div>
+
+    <!--Campo MotivoConsulta-->
+     <div class="mb-3">
+        <label asp-for="MotivoConsulta" class="form-label">Motivo de la consulta</label>
+        <textarea asp-for="MotivoConsulta" class="form-control"></textarea>
+        <span asp-validation-for="MotivoConsulta" class="text-danger"></span>
+    </div>
+
+    <!--Campo Diagnostico-->
+    <div class="mb-3">
+        <label asp-for="Diagnostico" class="form-label"></label>
+        <textarea asp-for="Diagnostico" class="form-control"></textarea>
+        <span asp-validation-for="Diagnostico" class="text-danger"></span>
+    </div>
+
+    <!--Campo FechaRegistro-->
+    <div class="mb-3">
+        <label asp-for="FechaConsulta" class="form-label">Fecha en la que se realizo la consulta</label>
+        <input asp-for="FechaConsulta" class="form-control" disabled="disabled"></input>
+        <span asp-validation-for="FechaConsulta" class="text-danger"></span>
+    </div>
+
+    <!--Campo Receta Medica-->
+    <div class="mb-3">
+        <label asp-for="RecetaMedica" class="form-label">Receta Medica</label>
+        <textarea asp-for="RecetaMedica" class="form-control"></textarea>
+        <span asp-validation-for="RecetaMedica" class="text-danger"></span>
+    </div>
+
+     <!--Campo Peso-->
+    <div class="mb-3">
+        <label asp-for="Peso" class="form-label">Peso en Kilogramos (Numero entero)</label>
+        <input asp-for="Peso" class="form-control"></input>
+        <span asp-validation-for="Peso" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Enviar</button>
+    @Html.ActionLink("Cancelar","Index","Mascota",null,new {atri = "", @class= "btn btn-secondary"})
+</form>
+
+
+@section Scripts{
+                    <partial name="_ValidationScriptsPartial" />
+
+
+                    <script>
+
+                        const urlObtenerMascotas = '@Url.Action("ObtenerMascotas")';
+
+                        $(function(){
+                            $("#ClienteId").change(async function(){
+                                const valorSeleccionado = $(this).val();
+
+                                const respuesta = await fetch(urlObtenerMascotas,{
+                                    method: 'POST',
+                                    body: valorSeleccionado,
+                                    headers: {
+                                        'Content-Type': 'application/json'
+                                    }
+
+                                });
+
+                                const json = await respuesta.json();
+                                const opciones = json.map(mascota => `<option value=${mascota.value}>${mascota.text}</option>`);
+                                $("#MascotaId").html(opciones);
+                            })
+                        })
+                    </script>
+
+                    <script>
+                        function enviarFormulario(e){
+                            e.preventDefault();
+                            Swal.fire({
+                                    title: 'Consulta Veterinaria Registrada Con exito',
+                                    icon: 'success',
+                                    confirmButtonText: 'OK'
+                            }).then((resultado) =>{
+                                const formulario = document.getElementById('formularioconsultaveterinaria');
+                                formulario.submit();
+                            })
+                        }
+                    </script>
+}

@@ -1,0 +1,49 @@
+﻿@model RazaCreacionViewModel
+
+@{
+    ViewData["Title"] = "Crear Raza";
+}
+
+
+<form asp-action="Crear" class="form" id="formularioraza" onsubmit="enviarFormulario(event)">
+
+    <h1>Crear Raza</h1>
+<h5>En este formulario podras registrar nuevas razas en el sistema</h5>
+
+
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+    <div class="mb-3">
+        <label asp-for="Nombre" class="form-label">Nombre</label>
+        <input asp-for="Nombre" class="form-control" />
+        <span asp-validation-for="Nombre" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="EspecieId" class="form-label"></label>
+        <select asp-for="EspecieId" asp-items="Model.ListaEspecies" class="form-select"></select>
+        <span asp-validation-for="EspecieId" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Enviar</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+
+</form>
+
+@section Scripts{
+                <partial name="_ValidationScriptsPartial" />
+
+                <script>
+                    function enviarFormulario(e){
+                         e.preventDefault();
+                         Swal.fire({
+                         title: 'Raza Registrada Con exito',
+                         icon: 'success',
+                                            confirmButtonText: 'OK'
+                         }).then((resultado) =>{
+                                        const formulario = document.getElementById('formularioraza');
+                                        formulario.submit();
+                         })
+                    }
+                </script>
+}

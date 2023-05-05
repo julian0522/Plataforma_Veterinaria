@@ -1,0 +1,16 @@
+﻿@model Raza
+
+@{
+    ViewData["Tlite"] = "Borrar Raza";
+}
+
+
+
+<form asp-action="BorrarRaza" class="form">
+
+    <h3 class="mb-3">¿Esta seguro de borrar la Raza @Model.Nombre</h3>
+
+    <input type="hidden" asp-for="Id" />
+    <button class="btn btn-danger" type="submit">Borrar</button>
+    <a class="btn btn-secondary" asp-action="Index">Cancelar</a>
+</form>

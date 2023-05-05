@@ -1,0 +1,99 @@
+﻿
+nav {
+   color:aliceblue
+    
+}
+
+.contenedor-botones {
+    display: flex;
+    justify-content: space-between;
+    width: 30%
+}
+
+.login {
+    background-image:linear-gradient( rgba(0,0,0,0.5),  rgba(0,0,0,0.5)), 
+    url('../Imagenes/mascota.jpg');
+    
+    background-size:cover;
+    background-repeat: no-repeat;
+    background-position: center center
+}
+
+.texto {
+    color:aliceblue;
+    position: relative
+}
+
+body {
+    background-image: linear-gradient( rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('../Imagenes/carousel-1.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center
+}
+
+.form {
+    background-color:#fff;
+    margin:auto;
+    width:90%;
+    max-width: 800px;
+    padding: 3em 3em;
+    border-radius: 10px;
+    box-shadow: 0 5px 10px -5px rgb(0 0 0 / 30%);
+}
+
+
+.form-login {
+    background-color: #fff;
+    margin: auto;
+    width: 90%;
+    max-width: 400px;
+    padding: 1em 1em;
+    border-radius: 10px;
+    box-shadow: 0 5px 10px -5px rgb(0 0 0 / 30%);
+}
+
+.card {
+    background-color: #fff;
+    padding: 1em 1em;
+    border-radius: 10px;
+    box-shadow: 0 5px 10px -5px rgb(0 0 0 / 30%);
+}
+
+.card-mascota {
+    background-color: #fff;
+    padding: 0em 0em;
+    border-radius: 10px;
+    box-shadow: 0 5px 10px -5px rgb(0 0 0 / 30%);
+    display: flex;
+    justify-content: space-between;
+    width: 103%
+}
+
+.card-consultaveterinaria {
+    background-color: #fff;
+    padding: 0em 0em;
+    border-radius: 10px;
+    box-shadow: 0 5px 10px -5px rgb(0 0 0 / 30%);
+    display: flex;
+    justify-content: space-between;
+    width: 103%
+}
+
+.card-registro {
+    background-color: #fff;
+    margin: auto;
+    width: 90%;
+    max-width: 600px;
+    padding: 2em 2em;
+    border-radius: 10px;
+    box-shadow: 0 5px 10px -5px rgb(0 0 0 / 30%);
+}
+
+.form-login h2 {
+    justify-content: center ;
+    color: darkseagreen;
+    display:flex;
+    position: center
+
+}
+

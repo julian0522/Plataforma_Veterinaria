@@ -1,0 +1,66 @@
+﻿@model Cliente
+
+@{
+    ViewData["Title"] = "Crear Cliente";
+}
+
+
+<form asp-action="Crear" class="form" id="formulariocliente" onsubmit="enviarFormulario(event)">
+
+    <h1>Crear Cliente</h1>
+<h5>Nos referimos a cliente al dueño de la mascota que seara atendida en nuestra veterinaria colpets</h5>
+
+<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+    <div class="mb-3">
+        <label asp-for="Id" class="form-label">Cedula del Cliente</label>
+        <input type="text" asp-for="Id" class="form-control" />
+        <span asp-validation-for="Id" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Nombre" class="form-label">Nombre Completo del Cliente</label>
+        <input type="text" asp-for="Nombre" class="form-control" />
+        <span asp-validation-for="Nombre" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Email" class="form-label">Email</label>
+        <input type="text" asp-for="Email" class="form-control" />
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Telefono" class="form-label">Telefono Movil</label>
+        <input type="text" asp-for="Telefono" class="form-control" />
+        <span asp-validation-for="Telefono" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Direccion" class="form-label">Direccion de residencia</label>
+        <input type="text" asp-for="Direccion" class="form-control"  style="text-transform:uppercase"/>
+        <span asp-validation-for="Direccion" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Enviar</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+
+</form>
+
+@section Scripts{
+                <partial name="_ValidationScriptsPartial" />
+
+                    <script>
+                    function enviarFormulario(e){
+                        e.preventDefault();
+                        Swal.fire({
+                                title: 'Cliente Registrado Con exito',
+                                icon: 'success',
+                                confirmButtonText: 'OK'
+                        }).then((resultado) =>{
+                            const formulario = document.getElementById('formulariocliente');
+                            formulario.submit();
+                        })
+                    }
+                </script>
+}

@@ -1,0 +1,81 @@
+﻿@model ConsultaVeterinaria
+
+@{
+    ViewData["Title"] = "Detalle Consulta Veterinaria";
+}
+
+
+
+<form asp-action="EditarMascota" class="form">
+
+    <h1>Consulta Veterinaria (Veterinaria Colpets)</h1>
+
+    <input type="hidden" asp-for="MascotaId" />
+     <!--Campo Id Consulta Veterinaria-->
+    <div class="mb-3">
+        <label asp-for="Id" class="form-label">Id Consulta Veterinaria</label>
+        <input asp-for="Id" class="form-control" disabled ="disabled"/>
+    </div>
+
+    <!--Campo Veterinario-->
+    <div class="mb-3">
+        <label asp-for="NomVeterinario" class="form-label">Nombre del vaterinario que Atendio a la mascota</label>
+         <input asp-for="NomVeterinario"  class="form-control" disabled ="disabled"></input>
+    </div>
+
+    <!--Campo Nombre-->
+    <div class="mb-3">
+        <label asp-for="NomMascota" class="form-label">Nombre de la Msacota</label>
+         <input asp-for="NomMascota"  class="form-control" disabled ="disabled"></input>
+    </div>
+
+    <!--Campo ClienteId-->
+    <div class="mb-3">
+        <label asp-for="NomCliente" class="form-label"> Nombre del Dueño de la Mascota</label>
+        <input asp-for="NomCliente"  class="form-control" disabled ="disabled"></input>
+    </div>
+
+    <!--Campo  Sucursal-->
+    <div class="mb-3">
+        <label asp-for="Sucursal" class="form-label">Sucursal donde fue atendida la mascota</label>
+        <input asp-for="Sucursal"  class="form-control" disabled ="disabled"></input>
+    </div>
+
+    <!--Campo Peso-->
+    <div class="mb-3">
+        <label asp-for="Peso" class="form-label">Peso en Kilogramos</label>
+        <input asp-for="Peso" class="form-control" disabled ="disabled"></input>
+    </div>
+
+    <!--Campo Fecha Consulta-->
+    <div class="mb-3">
+        <label asp-for="FechaConsulta" class="form-label">Fecha en la que se llevo a cabo la consulta veterinaria</label>
+        <input asp-for="FechaConsulta" class="form-control" disabled ="disabled"></input>
+    </div>
+
+    <!--Campo Motivo Consulta-->
+    <div class="mb-3">
+        <label asp-for="MotivoConsulta" class="form-label">Motivo de la consulta</label>
+        <textarea asp-for="MotivoConsulta" class="form-control" disabled ="disabled"></textarea>
+    </div>
+
+    <!--Campo Diagnostico-->
+    <div class="mb-3">
+        <label asp-for="Diagnostico" class="form-label"></label>
+        <textarea asp-for="Diagnostico" class="form-control" disabled ="disabled"></textarea>
+    </div>
+
+    <!--Campo Receta Medica-->
+    <div class="mb-3">
+        <label asp-for="RecetaMedica" class="form-label">Receta Medica asignada por el veterinario</label>
+        <textarea asp-for="RecetaMedica" class="form-control" disabled ="disabled"></textarea>
+    </div>
+
+    
+    <a class="btn btn-secondary" asp-action="Index" asp-route-id ="@Model.MascotaId">Volver</a>
+</form>
+
+
+@section Scripts{
+                            <partial name="_ValidationScriptsPartial" />     
+}

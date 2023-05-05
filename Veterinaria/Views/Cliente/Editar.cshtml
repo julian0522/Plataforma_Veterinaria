@@ -1,0 +1,47 @@
+﻿@model Cliente
+
+@{
+    ViewData["Title"] = "Editar Cliente";
+}
+
+
+
+<form asp-action="EditarCliente" class="form">
+    <input type="hidden" asp-for="Id" />
+
+    <h1>Editar el cliente/a @Model.Nombre</h1>
+
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    
+    <div class="mb-3">
+        <label asp-for="Nombre" class="form-label">Nombre Completo del Cliente</label>
+        <input type="text" asp-for="Nombre" class="form-control" disabled ="disabled"/>
+        <span asp-validation-for="Nombre" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Email" class="form-label">Email</label>
+        <input type="text" asp-for="Email" class="form-control" />
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Telefono" class="form-label">Telefono Movil</label>
+        <input type="text" asp-for="Telefono" class="form-control" />
+        <span asp-validation-for="Telefono" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Direccion" class="form-label">Direccion de residencia</label>
+        <input type="text" asp-for="Direccion" class="form-control" style="text-transform:uppercase"/>
+        <span asp-validation-for="Direccion" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Enviar</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+
+</form>
+
+@section Scripts{
+                    <partial name="_ValidationScriptsPartial" />
+}

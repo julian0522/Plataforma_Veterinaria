@@ -1,0 +1,16 @@
+﻿@model Especie
+
+@{
+    ViewData["Title"] = "Borrar Especie";
+}
+
+
+<form asp-action="BorrarEspecie" class="form">
+
+    <h3 class="mb-3">¿Esta seguro que desea borrar la especie: @Model.Nombre?</h3>
+
+
+    <input type="hidden" asp-for="Id" />
+    <button type="submit" class="btn btn-danger">Borrar</button>
+    <a class="btn btn-secondary" asp-action="Index">Cancelar</a>
+</form>
